@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
@@ -25,3 +26,6 @@ export class ListComponent implements OnInit {
             });
     }
     
+=======
+--Hello world!
+>>>>>>> 4fab5691fcb4881eb794b200854e3a4fcbdbb496
