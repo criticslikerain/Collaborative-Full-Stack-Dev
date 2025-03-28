@@ -2,19 +2,35 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { AlertType } from '@app/_models';
+export class Alert {
+    id!: string;
+    type!: AlertType;
+    message!: string;
+    autoClose!: boolean;
+    keepAfterRouteChange!: boolean;
+    fade!: boolean;
+
+    constructor(init?:Partial<Alert>) {
+        Object.assign(this, init);
+    }
+}
+
+export enum AlertType {
+    Success,
+    Error,
+    Info,
+    Warning
+}
 
 @Injectable({ providedIn: 'root' })
 export class AlertService {
     private subject = new Subject<Alert>();
     private defaultId = 'default-alert';
 
-    // enable subscribing to alerts observable
-    onAlert(id = this.defaultId): Observable<alert> {
-        return this.subject.asObservable().pipe(filter(x => && x.id === id));
+    onAlert(id = this.defaultId): Observable<Alert> {
+        return this.subject.asObservable().pipe(filter(x => x && x.id === id));
     }
 
-    // convenience methods
     success(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Success, message }));
     }
@@ -23,24 +39,20 @@ export class AlertService {
         this.alert(new Alert({ ...options, type: AlertType.Error, message }));
     }
 
-    info(message: string, options?:any) {
+    info(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Info, message }));
     }
 
-    warn(message: string, options?:any) {
+    warn(message: string, options?: any) {
         this.alert(new Alert({ ...options, type: AlertType.Warning, message }));
     }
 
-    //core alert method
     alert(alert: Alert) {
         alert.id = alert.id || this.defaultId;
-        alert.autoClose = (alert.autoClose === undefined ? true : alert.autoClose);
         this.subject.next(alert);
     }
 
-    // clear alert
     clear(id = this.defaultId) {
         this.subject.next(new Alert({ id }));
     }
-
 }

@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { AccountService } from '@app/_services';
+import { AccountService } from '../_services/account.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -11,14 +10,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            if ([401, 403], includes(err.status) && this.accountService.accountValue) {
+            if ([401, 403].includes(err.status) && this.accountService.accountValue) {
                 // auto logout if 401 or 403 response returned from api
                 this.accountService.logout();
             }
 
-            const error = (err && err.error && err.error.message) || err.statusText;
-            console.error(err);
-            return throwError(error);
-        }))
+            const error = err.error?.message || err.statusText;
+            return throwError(() => error);
+        }));
     }
 }

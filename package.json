@@ -7,19 +7,26 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:Collaborative-Development-of-a-Full-Stack-Application": "node dist/collaborative-development-of-a-full-stack-application/server/server.mjs"
+    "serve:ssr:ipt2025-auth-system": "node dist/ipt2025-auth-system/server/server.mjs"
   },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@environments/*": ["src/environments/*"]
+    }
+},
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
-    "@angular/common": "^18.2.0",
+    "@angular/common": "^18.2.13",
     "@angular/compiler": "^18.2.0",
     "@angular/core": "^18.2.0",
-    "@angular/forms": "^18.2.0",
+    "@angular/forms": "^18.2.13",
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/platform-server": "^18.2.0",
-    "@angular/router": "^18.2.0",
+    "@angular/router": "^18.2.13",
     "@angular/ssr": "^18.2.1",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
