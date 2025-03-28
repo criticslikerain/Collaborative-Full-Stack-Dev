@@ -1,0 +1,75 @@
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+/.angular/cache
+*.js.map
+
+# Dependencies
+/node_modules
+package-lock.json
+yarn.lock
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Environment files
+/src/environments/*.ts
+!/src/environments/environment.ts
+.env
+.env.*
+!.env.example
+
+# Misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Debug logs
+debug.log
+*.log
+
+# Build files
+*.tsbuildinfo
+
+# Test coverage
+/coverage
+/.nyc_output
+
+# Database
+*.sql
+*.sqlite
+*.sqlite3
+
+# Secrets and keys
+*.pem
+*.key
+*.cert
+config.json
+
+# Optional: Uncomment if using these tools
+# /e2e/*.js
+# /e2e/*.map
+# /.angular-cli.cache
+# /.nx/cache
